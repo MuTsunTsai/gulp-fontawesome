@@ -22,11 +22,11 @@ export = (packageType: PackageType = "free") => {
 				raw: content,
 				extension: file.extname.replace(/^\./, ""),
 			});
-			const matches = content.matchAll(/fa([srb]|-solid|-regular|-brand) fa-([a-z-]+[a-z])/g);
+			const matches = content.matchAll(/fa([srb]|-solid|-regular|-brands) fa-([a-z-]+[a-z])/g);
 			for(const match of matches) {
 				const type = match[1];
 				if(type == "s" || type == "-solid") sets.solid.add(match[2]);
-				else if(type == "b" || type == "-brand") sets.brands.add(match[2]);
+				else if(type == "b" || type == "-brands") sets.brands.add(match[2]);
 				else sets.regular.add(match[2]);
 			}
 		},
@@ -51,7 +51,17 @@ export = (packageType: PackageType = "free") => {
 				keyframes: true,
 				fontFace: true,
 			});
-			const css = cssResults[0].css;
+			let css = cssResults[0].css;
+			// For unknown reason, sometimes the font face is not kept. Fix this manually.
+			if(sets.regular.size && !css.includes("fa-regular-400.woff2")) {
+				css += `@font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:400;font-display:block;src:url(../webfonts/fa-regular-400.woff2) format("woff2"),url(../webfonts/fa-regular-400.ttf) format("truetype")}`;
+			}
+			if(sets.solid.size && !css.includes("fa-solid-900.woff2")) {
+				css += `@font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:900;font-display:block;src:url(../webfonts/fa-solid-900.woff2) format("woff2"),url(../webfonts/fa-solid-900.ttf) format("truetype")}`;
+			}
+			if(sets.brands.size && !css.includes("fa-brands-400.woff2")) {
+				css += `@font-face{font-family:"Font Awesome 6 Brands";font-style:normal;font-weight:400;font-display:block;src:url(../webfonts/fa-brands-400.woff2) format("woff2"),url(../webfonts/fa-brands-400.ttf) format("truetype")}`
+			}
 			add(Buffer.from(css, "utf8"), "css/all.min.css");
 
 			// Generate subset fonts

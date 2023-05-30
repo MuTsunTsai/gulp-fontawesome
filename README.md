@@ -24,5 +24,5 @@ gulp.task('fontawesome', () =>
 ```
 
 Pay attention that usages are identified by the format
-`/fa([srb]|-solid|-regular|-brand) fa-([a-z-]+[a-z])/`,
+`/fa([srb]|-solid|-regular|-brands) fa-([a-z-]+[a-z])/`,
 and must be exactly in this order.
