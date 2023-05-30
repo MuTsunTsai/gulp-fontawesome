@@ -1,0 +1,36 @@
+{
+	"name": "gulp-fontawesome",
+	"version": "1.0.0",
+	"description": "Create a minified FontAwesome package.",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "gulp default",
+		"version": "gulp && git add -A"
+	},
+	"keywords": [
+		"gulp",
+		"plugin"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/MuTsunTsai/gulp-fontawesome.git"
+	},
+	"author": "Mu-Tsun Tsai",
+	"license": "MIT",
+	"devDependencies": {
+		"@fortawesome/fontawesome-free": "^6.4.0",
+		"gulp": "^4.0.2",
+		"gulp-newer": "^1.4.0",
+		"gulp-typescript": "6.0.0-alpha.1",
+		"typescript": "^4.9.3"
+	},
+	"dependencies": {
+		"fontawesome-subset": "^4.4.0",
+		"gulp-through2": "^1.0.1",
+		"purgecss": "^5.0.0"
+	},
+	"files": [
+		"dist"
+	]
+}
