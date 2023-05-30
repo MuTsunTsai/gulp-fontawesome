@@ -1,6 +1,6 @@
 {
 	"name": "gulp-fontawesome",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "Create a minified FontAwesome package.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
