@@ -8,6 +8,8 @@ import { PurgeCSS } from "purgecss";
 import type { PackageType } from "fontawesome-subset/dist/types";
 import type { RawContent } from "purgecss";
 
+const matcher = /\bfa([srb]|-solid|-regular|-brands)\s+fa-([a-z0-9-]*[a-z0-9])\b/g;
+
 export = (packageType: PackageType = "free") => {
 	const sets = {
 		regular: new Set<string>(),
@@ -22,7 +24,7 @@ export = (packageType: PackageType = "free") => {
 				raw: content,
 				extension: file.extname.replace(/^\./, ""),
 			});
-			const matches = content.matchAll(/fa([srb]|-solid|-regular|-brands) fa-([a-z0-9-]+[a-z0-9])/g);
+			const matches = content.matchAll(matcher);
 			for(const match of matches) {
 				const type = match[1];
 				if(type == "s" || type == "-solid") sets.solid.add(match[2]);
