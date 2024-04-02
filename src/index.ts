@@ -22,7 +22,7 @@ export = (packageType: PackageType = "free") => {
 				raw: content,
 				extension: file.extname.replace(/^\./, ""),
 			});
-			const matches = content.matchAll(/fa([srb]|-solid|-regular|-brands) fa-([a-z-]+[a-z])/g);
+			const matches = content.matchAll(/fa([srb]|-solid|-regular|-brands) fa-([a-z0-9-]+[a-z0-9])/g);
 			for(const match of matches) {
 				const type = match[1];
 				if(type == "s" || type == "-solid") sets.solid.add(match[2]);
